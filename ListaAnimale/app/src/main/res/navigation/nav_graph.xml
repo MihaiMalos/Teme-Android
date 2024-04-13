@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/animal_list_fragment">
+
+
+    <fragment
+        android:id="@+id/animal_list_fragment"
+        android:name="com.example.listaanimale.AnimalListFragment"
+        android:label="AnimalsListFragment" >
+
+        <action
+            android:id="@+id/action_animalsListFragment_to_animalPreviewFragment"
+            app:destination="@id/animal_preview_fragment"
+            android:label="AnimalsListFragment"
+            tools:layout="@layout/fragment_animal_list"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/animal_preview_fragment"
+        android:name="com.example.listaanimale.AnimalPreviewFragment"
+        android:label="AnimalPreviewFragment"
+        tools:layout="@layout/fragment_animal_preview"
+        />
+
 
 </navigation>
