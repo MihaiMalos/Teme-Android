@@ -9,7 +9,19 @@ enum class EContinent (
     NORTH_AMERICA(3),
     SOUTH_AMERICA(4),
     AUSTRALIA(5),
-    ANTARCTICA(6)
+    ANTARCTICA(6);
+
+    override fun toString(): String {
+        return when(this) {
+            EUROPE -> "Europe"
+            AFRICA -> "Africa"
+            ASIA -> "Asia"
+            NORTH_AMERICA -> "North America"
+            SOUTH_AMERICA -> "South America"
+            AUSTRALIA -> "Australia"
+            ANTARCTICA -> "Antarctica"
+        }
+    }
 }
 
 class AnimalModel (

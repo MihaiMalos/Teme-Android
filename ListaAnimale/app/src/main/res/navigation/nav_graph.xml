@@ -3,27 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/animal_list_fragment">
+    app:startDestination="@id/fragment_animal_list">
 
 
     <fragment
-        android:id="@+id/animal_list_fragment"
+        android:id="@+id/fragment_animal_list"
         android:name="com.example.listaanimale.AnimalListFragment"
-        android:label="AnimalsListFragment" >
+        android:label="AnimalListFragment" >
 
         <action
-            android:id="@+id/action_animalsListFragment_to_animalPreviewFragment"
-            app:destination="@id/animal_preview_fragment"
-            android:label="AnimalsListFragment"
+            android:id="@+id/action_animalListFragment_to_animalPreviewFragment"
+            app:destination="@id/fragment_animal_preview"
+            android:label="AnimalListFragment"
             tools:layout="@layout/fragment_animal_list"
             />
+
     </fragment>
     <fragment
-        android:id="@+id/animal_preview_fragment"
+        android:id="@+id/fragment_animal_preview"
         android:name="com.example.listaanimale.AnimalPreviewFragment"
         android:label="AnimalPreviewFragment"
         tools:layout="@layout/fragment_animal_preview"
-        />
+        >
+
+        <argument
+            android:name="animal"
+            app:argType="AnimalModel" />
+
+    </fragment>
 
 
 </navigation>
