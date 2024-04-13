@@ -1,5 +1,7 @@
 package com.example.listaanimale.models
 
+import java.io.Serializable
+
 enum class EContinent (
     val key: Int
 ) {
@@ -24,7 +26,8 @@ enum class EContinent (
     }
 }
 
+
 class AnimalModel (
     val name: String,
     val continent: EContinent,
-)
+) : Serializable

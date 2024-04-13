@@ -28,7 +28,7 @@
 
         <argument
             android:name="animal"
-            app:argType="AnimalModel" />
+            app:argType="com.example.listaanimale.models.AnimalModel" />
 
     </fragment>
 
