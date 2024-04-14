@@ -1,5 +1,6 @@
 package com.example.listaanimale.models
 
+import com.example.listaanimale.R
 import java.io.Serializable
 
 enum class EContinent (
@@ -14,7 +15,7 @@ enum class EContinent (
     ANTARCTICA(6);
 
     override fun toString(): String {
-        return when(this) {
+        return when (this) {
             EUROPE -> "Europe"
             AFRICA -> "Africa"
             ASIA -> "Asia"
@@ -23,6 +24,23 @@ enum class EContinent (
             AUSTRALIA -> "Australia"
             ANTARCTICA -> "Antarctica"
         }
+    }
+
+    companion object {
+        fun getColorFromContinent(continent: EContinent): Int {
+            return when (continent) {
+                EUROPE -> R.color.green
+                AFRICA -> R.color.yellow
+                ASIA -> R.color.red
+                NORTH_AMERICA -> R.color.brown
+                SOUTH_AMERICA -> R.color.orange
+                AUSTRALIA -> R.color.purple
+                ANTARCTICA -> R.color.blue
+            }
+
+        }
+
+
     }
 }
 

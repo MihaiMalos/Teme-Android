@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.listaanimale.models.AnimalModel
+import com.example.listaanimale.models.EContinent.Companion.getColorFromContinent
 
 class AnimalPreviewFragment : Fragment() {
 
@@ -22,5 +23,6 @@ class AnimalPreviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<TextView>(R.id.tv_animal_name)?.text = arguments.animal.name
         view.findViewById<TextView>(R.id.tv_animal_continent)?.text = arguments.animal.continent.toString()
+        view.setBackgroundResource(getColorFromContinent(arguments.animal.continent))
     }
 }
