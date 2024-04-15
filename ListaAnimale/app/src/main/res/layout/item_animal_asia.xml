@@ -8,12 +8,16 @@
     android:background="@drawable/rounded_rectangle"
     android:clickable="true">
 
-    <androidx.constraintlayout.widget.Guideline
+    <View
         android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"/>
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/tv_animal_name"
@@ -41,7 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Animal Continent"
-        android:maxLines="2"/>
+        tools:text="Animal Continent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
