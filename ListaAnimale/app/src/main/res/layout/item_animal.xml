@@ -41,6 +41,7 @@
         tools:text="Animal Continent" />
     
     <Button
+        android:id="@+id/btn_delete_animal"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="15dp"

@@ -1,5 +1,8 @@
-package com.example.listaanimale.models
+package com.example.listaanimale.data.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.listaanimale.R
 import java.io.Serializable
 
@@ -45,7 +48,18 @@ enum class EContinent (
 }
 
 
+@Entity(tableName = "animals")
 class AnimalModel (
+    @PrimaryKey
+    @ColumnInfo(name = ARG_ANIMAL_NAME)
     val name: String,
-    val continent: EContinent,
+    @ColumnInfo(name = ARG_ANIMAL_CONTINENT)
+    var continent: EContinent,
 ) : Serializable
+
+{
+    companion object {
+        const val ARG_ANIMAL_NAME = "name"
+        const val ARG_ANIMAL_CONTINENT = "continent"
+    }
+}

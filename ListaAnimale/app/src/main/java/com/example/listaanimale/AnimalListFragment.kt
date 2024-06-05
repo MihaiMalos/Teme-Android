@@ -1,19 +1,28 @@
 package com.example.listaanimale
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.widget.ContentFrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listaanimale.adapters.AnimalListAdapter
-import com.example.listaanimale.models.AnimalModel
-import com.example.listaanimale.models.EContinent
+import com.example.listaanimale.data.models.AnimalModel
+import com.example.listaanimale.data.models.EContinent
+import com.example.listaanimale.data.repositories.AnimalRepository
+import com.example.listaanimale.helpers.extensions.logErrorMessage
 
 class AnimalListFragment : Fragment() {
 
+    private val itemList = ArrayList<AnimalModel>()
+    private val adapter = AnimalListAdapter(itemList)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,14 +37,58 @@ class AnimalListFragment : Fragment() {
     private fun setupAnimalList() {
         val layoutManager = LinearLayoutManager(context)
 
-        val animalList = getAnimals()
-        val adapter = AnimalListAdapter(animalList)
 
         view?.findViewById<RecyclerView>(R.id.rv_animal_list)?.apply {
             this.layoutManager = layoutManager
-            this.adapter = adapter
+            this.adapter = this@AnimalListFragment.adapter
+
+            AnimalRepository.getAllAnimals(){ animals ->
+                itemList.addAll(animals)
+                adapter?.notifyItemChanged(0, itemList.size)
+            }
         }
 
+        view?.findViewById<Button>(R.id.btn_add_animal)?.setOnClickListener {
+
+            val fragment = view?.findViewById<ConstraintLayout>(R.id.animal_list_view)
+
+            val name: String = fragment?.findViewById<TextView>(R.id.et_animal_name)?.text.toString()
+            val continent: String = fragment?.findViewById<TextView>(R.id.et_animal_continent)?.text.toString()
+
+
+            if (name.isEmpty() || continent.isEmpty()) {
+                AlertDialog.Builder(context)
+                    .setTitle("Error")
+                    .setMessage("Please fill in all the fields")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+            else if (EContinent.entries.find { it.toString() == continent } == null) {
+                AlertDialog.Builder(context)
+                    .setTitle("Error")
+                    .setMessage("Invalid continent")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+            else {
+                val animal = AnimalModel(name, EContinent.entries.find { it.toString() == continent }!!)
+                val model : AnimalModel? = itemList.find { it.name.lowercase() == name.lowercase() }
+
+                if (model != null)  model.continent = EContinent.entries.find { it.toString() == continent }!!
+                else itemList.add(animal)
+
+                adapter.notifyItemInserted(itemList.size - 1)
+                AnimalRepository.insertAnimal(animal)
+                {
+                    "Animal inserted".logErrorMessage()
+                }
+            }
+
+        }
 
     }
 

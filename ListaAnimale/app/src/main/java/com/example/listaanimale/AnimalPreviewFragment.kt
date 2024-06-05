@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.example.listaanimale.models.AnimalModel
-import com.example.listaanimale.models.EContinent.Companion.getColorFromContinent
+import com.example.listaanimale.data.models.AnimalModel
+import com.example.listaanimale.data.models.EContinent.Companion.getColorFromContinent
 
 class AnimalPreviewFragment : Fragment() {
 
