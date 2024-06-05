@@ -7,17 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.widget.ContentFrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listaanimale.adapters.AnimalListAdapter
 import com.example.listaanimale.data.models.AnimalModel
 import com.example.listaanimale.data.models.EContinent
 import com.example.listaanimale.data.repositories.AnimalRepository
-import com.example.listaanimale.helpers.extensions.logErrorMessage
 
 class AnimalListFragment : Fragment() {
 
@@ -76,16 +73,16 @@ class AnimalListFragment : Fragment() {
             }
             else {
                 val animal = AnimalModel(name, EContinent.entries.find { it.toString() == continent }!!)
-                val model : AnimalModel? = itemList.find { it.name.lowercase() == name.lowercase() }
+                val existingAnimal : AnimalModel? = itemList.find { it.name.lowercase() == name.lowercase() }
 
-                if (model != null)  model.continent = EContinent.entries.find { it.toString() == continent }!!
-                else itemList.add(animal)
-
-                adapter.notifyItemInserted(itemList.size - 1)
-                AnimalRepository.insertAnimal(animal)
-                {
-                    "Animal inserted".logErrorMessage()
+                if (existingAnimal != null) {
+                    existingAnimal.continent = EContinent.entries.find { it.toString() == continent }!!
+                    AnimalRepository.insertAnimal(existingAnimal) {}
+                }  else {
+                    itemList.add(animal)
+                    AnimalRepository.insertAnimal(animal){}
                 }
+                adapter.notifyItemInserted(itemList.size - 1)
             }
 
         }
