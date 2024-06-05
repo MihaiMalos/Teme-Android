@@ -12,7 +12,7 @@
         android:id="@+id/tv_animal_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:gravity="center"
         android:paddingLeft="@dimen/default_padding"
         android:paddingTop="@dimen/default_double_padding"
         android:paddingRight="@dimen/default_padding"
@@ -28,7 +28,7 @@
         android:id="@+id/tv_animal_continent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:gravity="center"
         android:paddingLeft="@dimen/default_padding"
         android:paddingRight="@dimen/default_padding"
         android:paddingBottom="@dimen/default_double_padding"
@@ -39,5 +39,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_animal_name"
         tools:text="Animal Continent" />
+    
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/recycle_bin_selector"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
