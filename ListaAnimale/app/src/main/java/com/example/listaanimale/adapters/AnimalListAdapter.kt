@@ -9,9 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listaanimale.AnimalListFragmentDirections
-import com.example.listaanimale.AnimalPreviewFragment
 import com.example.listaanimale.R
-import com.example.listaanimale.helpers.extensions.logErrorMessage
 import com.example.listaanimale.models.AnimalModel
 import com.example.listaanimale.models.EContinent
 import com.example.listaanimale.models.EContinent.Companion.getColorFromContinent
@@ -61,6 +59,7 @@ class AnimalListAdapter(
                 AnimalViewHolder(view)
             }
 
+
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -89,14 +88,6 @@ class AnimalListAdapter(
         fun bind(animal: AnimalModel) {
             animalNameTextView.text = animal.name
             continentTextView.text = animal.continent.toString()
-
-            drawable.setColor(
-                ContextCompat.getColor(
-                    itemView.context,
-                    getColorFromContinent(animal.continent)
-                )
-            )
-            itemView.background = drawable
 
             this.itemView.setOnClickListener {
                 AnimalListFragmentDirections.actionAnimalListFragmentToAnimalPreviewFragment(animal)

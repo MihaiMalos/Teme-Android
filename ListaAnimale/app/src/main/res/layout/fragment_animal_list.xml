@@ -4,6 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id = "@+id/et_animal_name"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="@string/name_of_an_animal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/default_padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/et_animal_continent"
+        />
+
+    <EditText
+        android:id = "@+id/et_animal_continent"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/default_padding"
+        android:hint="@string/continent"
+        app:layout_constraintTop_toBottomOf="@id/et_animal_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_add_animal"
+        />
+
+    <Button
+        android:id="@+id/btn_add_animal"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/default_padding"
+        app:layout_constraintTop_toBottomOf="@id/et_animal_continent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rv_animal_list"
+        android:text="@string/add"
+        android:background="@drawable/button_selector"
+
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_animal_list"
         android:layout_width="0dp"
@@ -13,6 +51,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btn_add_animal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,7 @@ class AnimalListFragment : Fragment() {
             this.adapter = adapter
         }
 
+
     }
 
     private fun getAnimals(): List<AnimalModel> {

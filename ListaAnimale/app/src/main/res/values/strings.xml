@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ListaAnimale</string>
     <string name="close">Close</string>
+    <string name="name_of_an_animal">Name of an Animal...</string>
+    <string name="continent">Continent...</string>
+    <string name="add">Add</string>
 </resources>
